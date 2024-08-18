@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alexander's Favorite Album Covers</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css">
+</head>
+<body>
+    <header>
+        <h1>Alexander's Favorite Album Covers! :P</h1>
+        <div class="info-icon" onclick="toggleInfoPopup()">ℹ️</div>
+    </header>
+    <div id="info-popup" class="popup center-popup">
+        <div class="popup-content">
+            <p>ABOUT THIS WEBSITE</p>
+            <p>Hello, my name is Alexander. I like album covers.</p>
+            <p>I believe cover artwork is a very essential part of releasing a work of music, because it may influence how the listener perceives the music they hear. I created this website to catalog some of my personal favorite album covers.</p>
+            <p>Note: I used GitHub Copilot to generate the code for this website because I have no coding knowledge. This website is being hosted for free on GitHub Pages.</p>
+            <span class="close-popup" onclick="toggleInfoPopup()">X</span>
+        </div>
+    </div>
+    <main>
+        <div id="album-grid" class="album-grid">
+            <!-- Albums will be dynamically generated here -->
+        </div>
+    </main>
+    <footer>
+        <div class="toolbar">
+            <button onclick="toggleToolbar()" id="toggle-toolbar-btn">▲ Open Toolbar</button>
+            <div id="toolbar-content" style="display: none;">
+                <div class="controls">
+                    <label for="sort-options">Sort by:</label>
+                    <select id="sort-options" onchange="sortAlbums()">
+                        <option value="title">Title Name (A-Z)</option>
+                        <option value="artist">Artist Name (A-Z)</option>
+                        <option value="date">Release Date (Oldest-Newest)</option>
+                    </select>
+                    <button onclick="toggleSortOrder()" id="sort-order-btn">↑</button>
+                </div>
+                <div class="controls">
+                    <label for="filter-tags">Filter by tag:</label>
+                    <select id="filter-tags" multiple="multiple"></select>
+                </div>
+                <div class="controls">
+                    <label for="search-bar">Search:</label>
+                    <input type="text" id="search-bar" onkeyup="searchAlbums()" placeholder="Search albums...">
+                </div>
+                <div class="controls">
+                    <label for="grid-width">Grid width:</label>
+                    <input type="range" id="grid-width" min="4" max="10" value="5" oninput="updateGridWidth(this.value)">
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+    <script src="script.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+</body>
+</html>
