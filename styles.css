@@ -1,8 +1,16 @@
+/* ----------------------------------------
+   Section: Text Style
+---------------------------------------- */
+
 body {
     font-family: 'Times New Roman', Times, serif;
     background-color: #333;
     color: #f2f2f2;
 }
+
+/* ----------------------------------------
+   Section: Header Styles
+---------------------------------------- */
 
 header {
     background-color: #444;
@@ -13,6 +21,7 @@ header {
     align-items: center;
     text-align: center;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    position: relative; 
 }
 
 header h1 {
@@ -20,10 +29,37 @@ header h1 {
     margin: 0;
 }
 
-.info-icon {
+.icon-container {
+    display: flex;
+    align-items: center;
+}
+
+.info-icon, .help-icon {
     font-size: 1.5em;
     cursor: pointer;
+    margin-left: 5px; /* Add some space between the icons */
 }
+
+.help-popup {
+    display: none; /* Hide the popup by default */
+    position: fixed;
+    top: 50%; /* Center the popup vertically */
+    left: 50%; /* Center the popup horizontally */
+    transform: translate(-50%, -50%); /* Center the popup */
+    background-color: rgba(102, 102, 102, 0.9); /* Semi-transparent background */
+    backdrop-filter: blur(10px); /* Blur effect */
+    color: #f0f0f0;
+    padding: 20px;
+    border: 1px solid #ccc;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    z-index: 10;
+    width: 300px; /* Set a fixed width for the popup */
+    text-align: left; /* Align text to the left */
+}
+
+/* ----------------------------------------
+   Section: Info Popup Styles "ABOUT THIS WEBSITE"
+---------------------------------------- */
 
 #info-popup {
     display: none;
@@ -31,17 +67,21 @@ header h1 {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 60%;
+    width: 50%;
+    height: 50%;
     background-color: #666;
     border: 1px solid #ccc;
     padding: 20px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
     z-index: 10;
     color: #f0f0f0;
+    overflow-y: auto; /* Enable vertical scrolling */
 }
 
 #info-popup .popup-content {
     text-align: left;
+    max-height: calc(100% - 60px); /* Adjust height to account for header and padding */
+    overflow-y: auto; /* Enable vertical scrolling within the content */
 }
 
 #info-popup .close-popup {
@@ -51,6 +91,42 @@ header h1 {
     cursor: pointer;
     font-size: 1.5em;
 }
+
+.popup-header {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    background-color: #444;
+    color: #f0f0f0;
+    border-bottom: 1px solid #ccc;
+}
+
+.popup-header span {
+    cursor: pointer;
+    padding: 5px 10px;
+}
+
+.popup-header span.nav-link:hover {
+    background-color: #555;
+}
+
+.popup-section {
+    display: none;
+}
+
+.popup-section.active {
+    display: block;
+}
+
+.popup-header .popup-title {
+    cursor: default; /* Prevent cursor from changing to pointer */
+    text-decoration: underline; /* Add underline to the title */
+    color: #ea4343; /* Change this to your desired color */
+}
+
+/* ----------------------------------------
+   Section: Footer/Toolbar Styles
+---------------------------------------- */
 
 footer {
     background-color: #444;
@@ -63,30 +139,9 @@ footer {
     box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
     position: fixed;
     width: 100%;
+    left: 0; /* Ensure the footer reaches the left side of the screen */
     bottom: 0;
     z-index: 1000;
-}
-
-.toolbar {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-}
-
-#toggle-toolbar-btn {
-    background: none;
-    border: none;
-    color: #f0f0f0;
-    font-size: 0.9em;
-    cursor: pointer;
-    font-family: 'Times New Roman', serif;
-}
-
-#toolbar-content {
-    display: flex;
-    align-items: center;
-    padding: 5px 0;
 }
 
 footer .controls {
@@ -125,54 +180,121 @@ footer #sort-order-btn {
     margin-left: 5px;
 }
 
-/* Style the Select2 container */
+.controls input[type="number"] {
+    width: 80px;
+    padding: 5px;
+    margin: 0 5px;
+}
+
+.toolbar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+#toggle-toolbar-btn {
+    background: none;
+    border: none;
+    color: #f0f0f0;
+    font-size: 0.9em;
+    cursor: pointer;
+    font-family: 'Times New Roman', serif;
+}
+
+#toolbar-content {
+    display: none;
+}
+
+/* ----------------------------------------
+   Section: "Filter by Tags" Tool Styles
+---------------------------------------- */
+
+/* Custom styles for the select2 dropdown */
+.select2-container--times-new-roman .select2-selection {
+    font-family: 'Times New Roman', Times, serif;
+    background-color: #333;
+    color: #fff;
+}
+.select2-container--times-new-roman .select2-selection__choice {
+    background-color: #555;
+    color: #fff;
+}
+.select2-container--times-new-roman .select2-selection__choice__remove {
+    color: #fff;
+}
+.select2-container--times-new-roman .select2-dropdown {
+    background-color: #333;
+    color: #fff;
+}
+
+/* ----------------------------------------
+   Section: Select2 Styles
+---------------------------------------- */
+
 .custom-select2 .select2-selection {
     background-color: #333 !important;
     color: #fff !important;
     border: 1px solid #555 !important;
 }
 
-/* Style the dropdown */
+.select2-container--default .select2-selection--multiple,
+.select2-container--default .select2-selection--single,
+.select2-container--default .select2-search--dropdown .select2-search__field,
+.select2-container--default .select2-selection--multiple .select2-selection__choice,
+.select2-container--default .select2-selection--multiple .select2-selection__rendered,
+.select2-container--default .select2-selection--single .select2-selection__rendered,
+.select2-results__option,
+.select2-selection__placeholder {
+    font-family: 'Times New Roman', Times, serif !important;
+}
+
+.select2-container--default .select2-selection--multiple .select2-selection__placeholder {
+    color: #aaa !important;
+}
+
 .select2-container--default .select2-dropdown.dark-dropdown {
     background-color: #333;
     border: 1px solid #555;
 }
 
-/* Style the options */
 .select2-container--default .select2-results__option {
     background-color: #333;
     color: #fff;
 }
 
-/* Style the highlighted option */
 .select2-container--default .select2-results__option--highlighted[aria-selected] {
     background-color: #555;
     color: #fff;
 }
 
-/* Style the selected option */
 .select2-container--default .select2-results__option[aria-selected=true] {
     background-color: #444;
 }
 
-/* Style the search field */
 .select2-container--default .select2-search--dropdown .select2-search__field {
     background-color: #444;
     color: #fff;
     border: 1px solid #555;
 }
 
-/* Style the selected tags */
 .custom-select2 .select2-selection__choice {
     background-color: #555 !important;
     color: #fff !important;
     border: 1px solid #777 !important;
 }
 
-/* Style the remove button on selected tags */
 .custom-select2 .select2-selection__choice__remove {
     color: #ccc !important;
 }
+
+.select2-container--times-new-roman .select2-selection__placeholder {
+    font-family: 'Times New Roman', Times, serif !important;
+}
+
+/* ----------------------------------------
+   Section: Album Grid Styles
+---------------------------------------- */
 
 .album-grid {
     display: grid;
@@ -191,6 +313,12 @@ footer #sort-order-btn {
     cursor: pointer;
 }
 
+/* ----------------------------------------
+   Section: Popup Styles
+   This section does not affect the info popup window. 
+   It seems to affect both the hover popups and the center popups.
+---------------------------------------- */
+
 .popup {
     display: none;
     position: fixed;
@@ -205,38 +333,14 @@ footer #sort-order-btn {
     z-index: 10;
     color: #f0f0f0;
 }
-
 .popup img {
     width: 50%;
     float: left;
     margin-right: 20px;
 }
-
 .popup p {
     font-size: 1.2em;
 }
-
-.popup .close-popup {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    cursor: pointer;
-    font-size: 20px;
-}
-
-.album:hover .popup {
-    display: block;
-    position: absolute;
-    width: 300px;
-    left: 100%;
-    transform: translateX(10px);
-    top: 0;
-}
-
-.album:hover .popup .close-popup {
-    display: none;
-}
-
 .popup .close-popup {
     position: absolute;
     top: 10px;
@@ -247,13 +351,36 @@ footer #sort-order-btn {
     z-index: 1000;
 }
 
-.album .popup .close-popup {
-    display: block;
+/* ----------------------------------------
+   Section: Hover Popup Styles
+---------------------------------------- */
+.album:hover .popup.hover-popup {
+    display: block; /* Display the popup when the album is hovered */
+    position: absolute; /* Position the popup relative to the album */
+    width: 300px; /* Set the width of the popup */
+    left: 100%; /* Position the popup to the right of the album */
+    transform: translateX(10px); /* Move the popup 10px to the right */
+    top: 0; /* Align the popup to the top of the album */   
+}
+.popup.hover-popup {
+    background-color: rgba(102, 102, 102, 0.8); /* Semi-transparent background */
+    backdrop-filter: blur(5px); /* Apply blur effect */
+    -webkit-backdrop-filter: blur(10px); /* Safari support */
 }
 
-.album:hover .popup .close-popup {
-    display: block;
+/* ----------------------------------------
+   Section: Center Popup Styles
+---------------------------------------- */
+.popup.center-popup {
+    backdrop-filter: none; /* Ensure no blur effect */
+    -webkit-backdrop-filter: none; /* Safari support */
 }
+
+/* ----------------------------------------
+   Section: Media Queries
+   These media queries ensure that the album grid layout adapts to different screen sizes, 
+   providing a better user experience on various devices (desktops, tablets, and mobile phones).
+---------------------------------------- */
 
 @media (max-width: 1200px) {
     .album-grid {
