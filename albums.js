@@ -1,5 +1,5 @@
 // Array of album objects to be displayed on the website
-const albums = [
+export const albums = [
     {
         title: "Abbey Road",
         artist: "The Beatles",
@@ -37,4 +37,5 @@ const albums = [
         notes: "The best-selling album of all time."
     },
 ];
+
 export default albums;
